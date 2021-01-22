@@ -2,13 +2,14 @@ function res = makeSierpinskiCarpet(iter)
 rows = columns = 3 ^ iter;
 res = true(rows, columns);
 offset = 0;
-val = 2;
 for k = 1 : iter
   rows = columns = 3 ^ k;
   m = true(rows, columns);
-  m(val - offset : val + offset, val - offset : val + offset) = false;
+  mid = (rows + 1) / 2;
+  left = top = mid - offset;
+  right = bottom = mid + offset;
+  m(left : right, top : bottom) = false;
   m = repmat(m, 3 ^ (iter - k));
+  offset = (rows - 1) / 2;
   res = res & m;
-  offset = offset + 3 ^ (k - 1); % 0, 1, 4, 13, 40 -> 1, 3, 9, 27
-  val = val + rows;
 endfor
