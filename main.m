@@ -1,5 +1,5 @@
 %clear all;
-iterations = 11;
+iterations = 10;
 profile clear;
 profile on;
 m = makeSierpinskiCarpet(iterations);

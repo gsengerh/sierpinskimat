@@ -3,17 +3,14 @@ function res = makeSierpinskiCarpet(iter)
     res = 1;
     return
   endif
-  res = false(3 ^ iter);
-  res(1 : 3, 1 : 3) = true;
-  res(2, 2) = false;
-    for k = 2 : iter
-    rows = 3 ^ (k - 1);
-    for l = [1, 1, 2, 2, 3, 3, 3; 2, 3, 1, 3, 1, 2, 3]
-      % fill each square with square from previous iteration
-      top = (l(1) - 1) * rows + 1;
-      left = (l(2) - 1) * rows + 1;
-      right = left + rows - 1;
-      bottom = top + rows - 1;
-      res(left : right, top : bottom) = res(1 : rows, 1 : rows);
-    endfor
+  res = true(3, 3);
+  res(5) = false;
+  for k = 2 : iter
+    res = repmat(res, 3, 3);
+    rows = 3 ^ k;
+    mid = (rows + 1) / 2;
+    offset = (rows / 3 - 1) / 2;
+    left = top = mid - offset;
+    right = bottom = mid + offset;
+    res(left : right, top : bottom) = false;
   end
