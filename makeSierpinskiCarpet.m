@@ -2,7 +2,7 @@ function res = makeSierpinskiCarpet(iter)
   if iter == 0
     res = 1;
     return
-  endif
+  end
   res = true(3, 3);
   res(5) = false;
   for k = 2 : iter
