@@ -14,7 +14,7 @@ function res = makeSierpinskiCarpet(iter)
   end
   
   if iter == 0
-    res = 1;
+    res = true;
     return
   end
   res = true(3, 3);
